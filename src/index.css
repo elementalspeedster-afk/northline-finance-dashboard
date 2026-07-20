@@ -82,6 +82,7 @@
 
 @theme inline {
   --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --color-surface-page: var(--surface-page);
   --color-surface-1: var(--surface-1);

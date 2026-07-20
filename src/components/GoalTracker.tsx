@@ -10,6 +10,15 @@ const ICONS: Record<string, typeof Target> = {
   home: Home,
 };
 
+// Thematically linked to the categorical palette (car -> transportation's
+// hue, home -> housing's hue) rather than a fresh set of colors.
+const ICON_COLOR_VAR: Record<string, string> = {
+  shield: "var(--income)",
+  plane: "var(--cat-transport)",
+  car: "var(--cat-debt)",
+  home: "var(--cat-housing)",
+};
+
 interface Props {
   goals: Goal[];
 }
@@ -38,13 +47,17 @@ function GoalGroup({ title, goals }: { title: string; goals: Goal[] }) {
       <div className="space-y-3">
         {goals.map((goal) => {
           const Icon = ICONS[goal.icon] ?? Target;
+          const colorVar = ICON_COLOR_VAR[goal.icon] ?? "var(--ink-secondary)";
           const percent = Math.min(
             100,
             (goal.current_amount / goal.target_amount) * 100,
           );
           return (
             <div key={goal.id} className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-surface-sunken text-ink-secondary flex items-center justify-center shrink-0">
+              <div
+                className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+                style={{ backgroundColor: `color-mix(in oklab, ${colorVar} 14%, transparent)`, color: colorVar }}
+              >
                 <Icon size={15} />
               </div>
               <div className="flex-1 min-w-0">
@@ -59,8 +72,8 @@ function GoalGroup({ title, goals }: { title: string; goals: Goal[] }) {
                 </div>
                 <div className="h-1.5 rounded-full bg-surface-sunken overflow-hidden">
                   <div
-                    className="h-full rounded-full bg-brand"
-                    style={{ width: `${percent}%` }}
+                    className="h-full rounded-full"
+                    style={{ width: `${percent}%`, backgroundColor: colorVar }}
                   />
                 </div>
               </div>

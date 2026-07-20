@@ -14,7 +14,7 @@ export function CostAnalysisChart({ breakdown, total }: Props) {
   return (
     <Card>
       <CardHeader title="Cost analysis" subtitle="Spending overview · this month" />
-      <p className="text-2xl font-semibold text-ink-primary tabular-nums mb-4">
+      <p className="font-display text-2xl font-semibold text-ink-primary tabular-nums tracking-tight mb-4">
         {formatCurrency(total)}
       </p>
       <div className="space-y-2.5">

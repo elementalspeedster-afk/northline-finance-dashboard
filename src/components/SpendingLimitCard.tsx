@@ -13,12 +13,25 @@ export function SpendingLimitCard({ spent, limit }: Props) {
 
   return (
     <Card>
-      <CardHeader title="Monthly spending limit" subtitle="Current status" />
+      <CardHeader
+        title="Monthly spending limit"
+        subtitle="Current status"
+        action={
+          <span
+            className={clsx(
+              "font-display text-sm font-semibold tabular-nums",
+              over ? "text-status-critical" : "text-ink-primary",
+            )}
+          >
+            {Math.round(percent)}%
+          </span>
+        }
+      />
       <div className="h-2.5 rounded-full bg-surface-sunken overflow-hidden">
         <div
           className={clsx(
             "h-full rounded-full transition-all",
-            over ? "bg-status-critical" : "bg-brand",
+            over ? "bg-status-critical" : "bg-gradient-to-r from-brand to-savings",
           )}
           style={{ width: `${percent}%` }}
         />

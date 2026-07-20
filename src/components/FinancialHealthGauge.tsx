@@ -48,8 +48,8 @@ export function FinancialHealthGauge({ health }: Props) {
             x={cx}
             y={cy - 8}
             textAnchor="middle"
-            className="fill-ink-primary"
-            style={{ fontSize: 28, fontWeight: 600 }}
+            className="fill-ink-primary font-display"
+            style={{ fontSize: 30, fontWeight: 600, letterSpacing: "-0.02em" }}
           >
             {formatPercent(score, 0)}
           </text>

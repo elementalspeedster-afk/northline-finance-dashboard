@@ -45,7 +45,7 @@ export function BalanceOverviewChart({ series, period, onPeriodChange, saved }: 
         <div>
           <p
             className={clsx(
-              "text-2xl font-semibold tabular-nums",
+              "font-display text-3xl font-semibold tabular-nums tracking-tight",
               saved >= 0 ? "text-ink-primary" : "text-expense",
             )}
           >

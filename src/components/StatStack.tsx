@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { ArrowDownRight, ArrowUpRight } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, PiggyBank, TrendingDown, TrendingUp } from "lucide-react";
 import { formatCurrency, formatPercent } from "../lib/format";
 import { Card } from "./ui/Card";
 import type { Totals } from "../lib/metrics";
@@ -23,6 +23,8 @@ export function StatStack({ totals, deltas, period }: Props) {
         delta={deltas.income}
         period={period}
         goodDirection="up"
+        icon={TrendingUp}
+        accent="income"
       />
       <Stat
         label="Total expenses"
@@ -30,6 +32,8 @@ export function StatStack({ totals, deltas, period }: Props) {
         delta={deltas.expenses}
         period={period}
         goodDirection="down"
+        icon={TrendingDown}
+        accent="expense"
       />
       <Stat
         label="Saved balance"
@@ -37,6 +41,8 @@ export function StatStack({ totals, deltas, period }: Props) {
         delta={deltas.saved}
         period={period}
         goodDirection="up"
+        icon={PiggyBank}
+        accent="savings"
       />
     </div>
   );
@@ -48,12 +54,16 @@ function Stat({
   delta,
   period,
   goodDirection,
+  icon: Icon,
+  accent,
 }: {
   label: string;
   value: number;
   delta: number | null;
   period: number;
   goodDirection: "up" | "down";
+  icon: typeof TrendingUp;
+  accent: "income" | "expense" | "savings";
 }) {
   const isUp = (delta ?? 0) >= 0;
   const isGood = delta === null ? null : isUp === (goodDirection === "up");
@@ -61,8 +71,20 @@ function Stat({
   return (
     <Card className="flex-1" padded={false}>
       <div className="p-4">
-        <p className="text-xs text-ink-muted">{label}</p>
-        <p className="text-xl font-semibold text-ink-primary tabular-nums mt-1.5">
+        <div className="flex items-center justify-between">
+          <p className="text-xs text-ink-muted">{label}</p>
+          <div
+            className={clsx(
+              "w-7 h-7 rounded-lg flex items-center justify-center shrink-0",
+              accent === "income" && "bg-income/10 text-income",
+              accent === "expense" && "bg-expense/10 text-expense",
+              accent === "savings" && "bg-savings/10 text-savings",
+            )}
+          >
+            <Icon size={14} />
+          </div>
+        </div>
+        <p className="font-display text-2xl font-semibold text-ink-primary tabular-nums mt-2 tracking-tight">
           {formatCurrency(value)}
         </p>
         {delta !== null && (

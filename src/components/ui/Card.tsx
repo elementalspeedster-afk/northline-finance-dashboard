@@ -11,7 +11,9 @@ export function Card({ children, className, padded = true }: CardProps) {
   return (
     <div
       className={clsx(
-        "rounded-2xl border border-border-hairline bg-surface-1 shadow-sm",
+        "rounded-2xl border border-border-hairline bg-surface-1",
+        "shadow-[0_1px_2px_rgba(0,0,0,0.03),0_4px_16px_-4px_rgba(0,0,0,0.06)]",
+        "dark:shadow-[0_1px_2px_rgba(0,0,0,0.2),0_4px_20px_-4px_rgba(0,0,0,0.5)]",
         padded && "p-5",
         className,
       )}
