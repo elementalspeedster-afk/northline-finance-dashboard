@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+
+  /* surfaces */
+  --surface-page: #f9f9f7;
+  --surface-1: #ffffff;
+  --surface-2: #fcfcfb;
+  --surface-sunken: #f3f2ee;
+  --border-hairline: rgba(11, 11, 11, 0.1);
+
+  /* ink */
+  --ink-primary: #0b0b0b;
+  --ink-secondary: #52514e;
+  --ink-muted: #898781;
+  --grid-hairline: #e1e0d9;
+  --axis-baseline: #c3c2b7;
+
+  /* entity colors (fixed, consistent across the whole app) */
+  --income: #008300;
+  --expense: #e34948;
+  --savings: #2a78d6;
+  --brand: #2a78d6;
+
+  /* categorical (cost-analysis categories) */
+  --cat-housing: #4a3aa7;
+  --cat-debt: #eb6834;
+  --cat-food: #1baf7a;
+  --cat-transport: #eda100;
+  --cat-healthcare: #e87ba4;
+  --cat-investments: #6da7ec;
+  --cat-other: #898781;
+
+  /* status */
+  --status-good: #0ca30c;
+  --status-warning: #fab219;
+  --status-serious: #ec835a;
+  --status-critical: #d03b3b;
+
+  /* success text (accessible on light surface) */
+  --text-success: #006300;
+}
+
+.dark {
+  color-scheme: dark;
+
+  --surface-page: #0d0d0d;
+  --surface-1: #1a1a19;
+  --surface-2: #1f1f1e;
+  --surface-sunken: #161615;
+  --border-hairline: rgba(255, 255, 255, 0.1);
+
+  --ink-primary: #ffffff;
+  --ink-secondary: #c3c2b7;
+  --ink-muted: #898781;
+  --grid-hairline: #2c2c2a;
+  --axis-baseline: #383835;
+
+  --income: #008300;
+  --expense: #e66767;
+  --savings: #3987e5;
+  --brand: #3987e5;
+
+  --cat-housing: #9085e9;
+  --cat-debt: #d95926;
+  --cat-food: #199e70;
+  --cat-transport: #c98500;
+  --cat-healthcare: #d55181;
+  --cat-investments: #5598e7;
+  --cat-other: #898781;
+
+  --status-good: #0ca30c;
+  --status-warning: #fab219;
+  --status-serious: #ec835a;
+  --status-critical: #e66767;
+
+  --text-success: #0ca30c;
+}
+
+@theme inline {
+  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --color-surface-page: var(--surface-page);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-border-hairline: var(--border-hairline);
+
+  --color-ink-primary: var(--ink-primary);
+  --color-ink-secondary: var(--ink-secondary);
+  --color-ink-muted: var(--ink-muted);
+  --color-grid-hairline: var(--grid-hairline);
+  --color-axis-baseline: var(--axis-baseline);
+
+  --color-income: var(--income);
+  --color-expense: var(--expense);
+  --color-savings: var(--savings);
+  --color-brand: var(--brand);
+
+  --color-cat-housing: var(--cat-housing);
+  --color-cat-debt: var(--cat-debt);
+  --color-cat-food: var(--cat-food);
+  --color-cat-transport: var(--cat-transport);
+  --color-cat-healthcare: var(--cat-healthcare);
+  --color-cat-investments: var(--cat-investments);
+  --color-cat-other: var(--cat-other);
+
+  --color-status-good: var(--status-good);
+  --color-status-warning: var(--status-warning);
+  --color-status-serious: var(--status-serious);
+  --color-status-critical: var(--status-critical);
+  --color-text-success: var(--text-success);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--surface-page);
+  color: var(--ink-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--axis-baseline);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
