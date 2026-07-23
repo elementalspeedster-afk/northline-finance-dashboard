@@ -41,11 +41,11 @@ export function BalanceOverviewChart({ series, period, onPeriodChange, saved }: 
 
   return (
     <Card className="flex-1 min-w-0">
-      <div className="flex items-start justify-between mb-1">
+      <div className="flex flex-wrap items-start justify-between gap-2 mb-1">
         <div>
           <p
             className={clsx(
-              "font-display text-3xl font-semibold tabular-nums tracking-tight",
+              "font-display text-2xl sm:text-3xl font-semibold tabular-nums tracking-tight",
               saved >= 0 ? "text-ink-primary" : "text-expense",
             )}
           >

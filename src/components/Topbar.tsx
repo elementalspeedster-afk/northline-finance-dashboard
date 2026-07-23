@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Bell, Search, Sparkles, Moon, Sun, Loader2 } from "lucide-react";
+import { Bell, Menu, Search, Sparkles, Moon, Sun, Loader2 } from "lucide-react";
 import { supabase } from "../lib/supabaseClient";
 import { initials } from "../lib/format";
 
@@ -8,6 +8,7 @@ interface TopbarProps {
   onToggleDark: () => void;
   notificationCount: number;
   onClearNotifications: () => void;
+  onOpenMobileNav: () => void;
 }
 
 export function Topbar({
@@ -15,6 +16,7 @@ export function Topbar({
   onToggleDark,
   notificationCount,
   onClearNotifications,
+  onOpenMobileNav,
 }: TopbarProps) {
   const [simulating, setSimulating] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
@@ -30,8 +32,16 @@ export function Topbar({
   }
 
   return (
-    <header className="h-16 shrink-0 border-b border-border-hairline bg-surface-1 flex items-center gap-4 px-6">
-      <div className="relative flex-1 max-w-sm">
+    <header className="h-16 shrink-0 border-b border-border-hairline bg-surface-1 flex items-center gap-2 px-3 sm:gap-4 sm:px-6">
+      <button
+        onClick={onOpenMobileNav}
+        className="w-9 h-9 shrink-0 rounded-lg border border-border-hairline flex items-center justify-center text-ink-secondary hover:bg-surface-sunken transition-colors lg:hidden"
+        title="Open menu"
+      >
+        <Menu size={16} />
+      </button>
+
+      <div className="relative flex-1 max-w-sm hidden sm:block">
         <Search
           size={15}
           className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-muted"
@@ -91,14 +101,15 @@ export function Topbar({
       <button
         onClick={handleSimulate}
         disabled={simulating}
-        className="flex items-center gap-1.5 rounded-lg bg-brand text-white text-sm font-medium px-3.5 py-2 hover:opacity-90 active:opacity-80 transition-opacity disabled:opacity-60"
+        className="flex items-center gap-1.5 rounded-lg bg-brand text-white text-sm font-medium px-2.5 py-2 sm:px-3.5 hover:opacity-90 active:opacity-80 transition-opacity disabled:opacity-60"
+        title="Simulate transaction"
       >
         {simulating ? (
           <Loader2 size={15} className="animate-spin" />
         ) : (
           <Sparkles size={15} />
         )}
-        Simulate transaction
+        <span className="hidden sm:inline">Simulate transaction</span>
       </button>
     </header>
   );

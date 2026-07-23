@@ -34,6 +34,7 @@ function App() {
 
   const [notificationCount, setNotificationCount] = useState(0);
   const prevCount = useRef<number | null>(null);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   useEffect(() => {
     if (data.loading) return;
@@ -49,7 +50,10 @@ function App() {
 
   return (
     <div className="flex h-screen bg-surface-page text-ink-primary overflow-hidden">
-      <Sidebar />
+      <Sidebar
+        mobileOpen={mobileNavOpen}
+        onCloseMobile={() => setMobileNavOpen(false)}
+      />
 
       <div className="flex-1 flex flex-col min-w-0">
         <Topbar
@@ -57,9 +61,10 @@ function App() {
           onToggleDark={() => setDark((d) => !d)}
           notificationCount={notificationCount}
           onClearNotifications={() => setNotificationCount(0)}
+          onOpenMobileNav={() => setMobileNavOpen(true)}
         />
 
-        <main className="flex-1 overflow-y-auto p-6">
+        <main className="flex-1 overflow-y-auto p-4 sm:p-6">
           <div className="flex flex-col xl:flex-row gap-5 max-w-[1400px] mx-auto">
             <div className="flex-1 min-w-0 space-y-5">
               <div className="flex flex-col lg:flex-row gap-5">
